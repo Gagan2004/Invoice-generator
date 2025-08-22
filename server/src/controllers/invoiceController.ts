@@ -413,15 +413,9 @@ export const generatePdf = async (req: Request, res: Response) => {
     try {
         console.log('Attempting to launch browser...');
         const browser = await puppeteer.launch({
-          args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--single-process',
-            '--no-zygote'
-          ],
-          headless: true,
-            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome',
-
+            executablePath: puppeteer.executablePath(),
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            headless: true,
         });
         console.log('Browser launched successfully.');
         
