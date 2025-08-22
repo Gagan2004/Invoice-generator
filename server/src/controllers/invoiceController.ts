@@ -420,10 +420,8 @@ export const generatePdf = async (req: Request, res: Response) => {
             '--no-zygote'
           ],
           headless: true,
-          executablePath:
-            process.env.NODE_ENV === 'production'
-              ? process.env.PUPPETEER_EXECUTABLE_PATH
-              : puppeteer.executablePath()
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/google-chrome',
+
         });
         console.log('Browser launched successfully.');
         
