@@ -410,22 +410,25 @@ export const generatePdf = async (req: Request, res: Response) => {
 </html>
 `;
 
-  try {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.setContent(htmlContent);
-    const pdfBuffer = await page.pdf({ format: 'A4' });
-    await browser.close();
+    try {
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            headless: true,
+        });
+        const page = await browser.newPage();
+        await page.setContent(htmlContent);
+        const pdfBuffer = await page.pdf({ format: 'A4' });
+        await browser.close();
 
-    res.set({
-      'Content-Type': 'application/pdf',
-      'Content-Length': pdfBuffer.length,
-      'Content-Disposition': 'attachment; filename=invoice.pdf',
-    });
-    res.send(pdfBuffer);
-  } catch (error) {
-    console.error('Error generating PDF:', error);
-    res.status(500).json({ message: 'Error generating PDF' });
-  }
+        res.set({
+            'Content-Type': 'application/pdf',
+            'Content-Length': pdfBuffer.length,
+            'Content-Disposition': 'attachment; filename=invoice.pdf',
+        });
+        res.send(pdfBuffer);
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        res.status(500).json({ message: 'Error generating PDF' });
+    }
 };
 
