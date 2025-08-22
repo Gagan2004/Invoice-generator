@@ -1,5 +1,8 @@
 # Invoice Generator
 
+
+> ⚠️ **Warning:** THe puppeteer has not been been configured to production yet , so it can't geenerate INVOICES on deployed URL , set up the project locally as instructed below,  if you wanna experience all the  functionalities of this prototype.
+
 This is a full-stack invoice generator application built with the MERN stack (MongoDB, Express, React, Node.js). It allows users to create, manage, and download invoices as PDFs.
 
 ## Features
@@ -56,7 +59,7 @@ Create a `.env` file in the `server` directory and add the following environment
 
 ```env
 PORT=5000
-MONGO_URI=<your-mongodb-connection-string>
+MONGO_URI=mongodb+srv://test_user:test_user@voice.j5zddud.mongodb.net/?retryWrites=true&w=majority&appName=voice
 JWT_SECRET=abc123
 ```
 
