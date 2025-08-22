@@ -411,14 +411,28 @@ export const generatePdf = async (req: Request, res: Response) => {
 `;
 
     try {
+        console.log('Attempting to launch browser...');
         const browser = await puppeteer.launch({
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
             headless: true,
         });
+        console.log('Browser launched successfully.');
+        
+        console.log('Creating new page...');
         const page = await browser.newPage();
+        console.log('Page created.');
+
+        console.log('Setting HTML content...');
         await page.setContent(htmlContent);
+        console.log('HTML content set.');
+
+        console.log('Generating PDF...');
         const pdfBuffer = await page.pdf({ format: 'A4' });
+        console.log('PDF generated.');
+
+        console.log('Closing browser...');
         await browser.close();
+        console.log('Browser closed.');
 
         res.set({
             'Content-Type': 'application/pdf',
