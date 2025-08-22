@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { API_BASE_URL } from '../../utils/apiBase';
 
 // Define types for the async thunk arguments
 interface LoginCredentials {
@@ -28,7 +29,7 @@ const initialState: AuthState = {
 
 export const signupUser = createAsyncThunk('auth/signupUser', async (userData: SignupCredentials, { rejectWithValue }) => {
   try {
-    const response = await fetch('/api/auth/signup', {
+    const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +49,7 @@ export const signupUser = createAsyncThunk('auth/signupUser', async (userData: S
 
 export const loginUser = createAsyncThunk('auth/loginUser', async (userData: LoginCredentials, { rejectWithValue }) => {
   try {
-    const response = await fetch('/api/auth/login', {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
