@@ -25,7 +25,7 @@ export const signup = async (req: Request, res: Response) => {
       password,
     });
 
-    const token = createToken(user._id);
+    const token = createToken(user._id.toString());
 
     res.status(201).json({
       _id: user._id,
@@ -45,7 +45,7 @@ export const login = async (req: Request, res: Response) => {
     const user = await User.findOne({ email });
 
     if (user && (await user.comparePassword(password))) {
-      const token = createToken(user._id);
+      const token = createToken(user._id.toString());
       res.json({
         _id: user._id,
         name: user.name,
