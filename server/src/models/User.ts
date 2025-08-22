@@ -2,9 +2,10 @@ import mongoose, { Schema, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
 
 export interface IUser extends Document {
+  _id: mongoose.Schema.Types.ObjectId;
   name: string;
   email: string;
-  password?: string; // Make password optional as it won't be stored in the document
+  password?: string;
   passwordHash: string;
   comparePassword(password: string): Promise<boolean>;
 }
