@@ -41,7 +41,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/invoice-generator.git
+git clone https://github.com/Gagan2004/Invoice-generator.git
 cd invoice-generator
 ```
 
